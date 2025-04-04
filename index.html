@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coffee Walk Predictor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>How Fast Can You Walk Without Spilling Coffee?</h1>
+
+  <form id="coffeeForm">
+    <input type="text" name="name" placeholder="Your Name" required />
+
+    <select name="coffeeType" required>
+      <option value="" disabled selected>Select Coffee Type</option>
+      <option value="espresso">Espresso</option>
+      <option value="double_espresso">Double Espresso</option>
+      <option value="americano">Americano</option>
+      <option value="latte">Latte</option>
+      <option value="cappuccino">Cappuccino</option>
+      <option value="flat_white">Flat White</option>
+      <option value="macchiato">Macchiato</option>
+      <option value="mocha">Mocha</option>
+      <option value="chai_latte">Chai Latte</option>
+      <option value="hot_chocolate">Hot Chocolate</option>
+    </select>
+
+    <select name="milkType" required>
+      <option value="" disabled selected>Select Milk Type</option>
+      <option value="whole">Whole</option>
+      <option value="skim">Skim</option>
+      <option value="oat">Oat</option>
+      <option value="soy">Soy</option>
+      <option value="almond">Almond</option>
+      <option value="none">No Milk</option>
+    </select>
+
+    <select name="cupSize" required>
+      <option value="" disabled selected>Select Cup Size</option>
+      <option value="small">Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
+    </select>
+
+    <label for="unitToggle">Units:</label>
+    <select id="unitToggle">
+      <option value="metric" selected>Metric (cm / kg)</option>
+      <option value="imperial">Imperial (ft/in & st/lbs)</option>
+    </select>
+
+    <!-- Metric Inputs -->
+    <div id="metricInputs">
+      <input type="number" name="height" id="heightMetric" placeholder="Height (cm)" required />
+      <input type="number" name="weight" id="weightMetric" placeholder="Weight (kg)" required />
+    </div>
+
+    <!-- Imperial Inputs -->
+    <div id="imperialInputs" class="hidden">
+      <div>
+        <input type="number" id="feet" placeholder="Height (ft)" />
+        <input type="number" id="inches" placeholder="Height (in)" />
+      </div>
+      <div>
+        <input type="number" id="stone" placeholder="Weight (st)" />
+        <input type="number" id="pounds" placeholder="Weight (lbs)" />
+      </div>
+    </div>
+
+    <button type="submit">Calculate Safe Speed</button>
+  </form>
+
+  <!-- Results & Preset Debug Info -->
+  <div id="presetInfo" class="hidden"></div>
+  <div id="result" class="hidden"></div>
+  <button id="startTracking" class="hidden">Start Live Slosh-o-Meter</button>
+<div id="sloshStatus" class="hidden">
+  <p><b>Live Speed:</b> <span id="liveSpeed">0.00</span> m/s</p>
+  <div id="sloshMeterContainer">
+    <div id="sloshMeter"></div>
+  </div>
+</div>
+
+<button id="startTracking" class="hidden">Start Live Slosh-o-Meter</button>
+
+<div id="sloshStatus" class="hidden">
+  <p><b>Live Speed:</b> <span id="liveSpeed">0.00</span> m/s</p>
+  <p><b>Tilt:</b> <span id="tiltAngle">0.00</span>°</p>
+  <div id="sloshMeterContainer">
+    <div id="sloshMeter"></div>
+  </div>
+</div>
+
+<audio id="alertSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+
+
+  <!-- Cooling Chart -->
+  <canvas id="coolingChart" width="400" height="200" style="margin-top: 2rem;"></canvas>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    const ctx = document.getElementById('coolingChart').getContext('2d');
+    const coolingChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          label: 'Coffee Temperature (°C)',
+          data: [],
+          borderWidth: 2,
+          borderColor: 'rgb(255, 99, 132)',
+          tension: 0.3,
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: true }
+        },
+        scales: {
+          x: {
+            title: { display: true, text: 'Time (minutes)' }
+          },
+          y: {
+            title: { display: true, text: 'Temperature (°C)' },
+            min: 0,
+            max: 100
+          }
+        }
+      }
+    });
+
+    // Make sure chart is shown after calculation
+    function updateCoolingChart(timeData, tempData) {
+      document.getElementById('coolingChart').classList.remove('hidden');
+      coolingChart.data.labels = timeData.map(t => t.toFixed(1));
+      coolingChart.data.datasets[0].data = tempData.map(t => t.toFixed(1));
+      coolingChart.update();
+    }
+  </script>
+  <canvas id="coolingChart" class="hidden" width="400" height="200" style="margin-top: 2rem;"></canvas>
+
+</body>
+</html>
