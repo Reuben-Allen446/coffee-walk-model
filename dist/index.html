@@ -49,13 +49,11 @@
       <option value="imperial">Imperial (ft/in & st/lbs)</option>
     </select>
 
-    <!-- Metric Inputs -->
     <div id="metricInputs">
       <input type="number" name="height" id="heightMetric" placeholder="Height (cm)" required />
       <input type="number" name="weight" id="weightMetric" placeholder="Weight (kg)" required />
     </div>
 
-    <!-- Imperial Inputs -->
     <div id="imperialInputs" class="hidden">
       <div>
         <input type="number" id="feet" placeholder="Height (ft)" />
@@ -83,17 +81,11 @@
     </div>
   </div>
 
-  <!-- Audio Beep -->
-  <audio id="alertSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+  <audio id="alertSound" src="beep_short.wav"></audio>
 
-  <!-- Cooling Chart -->
   <canvas id="coolingChart" class="hidden" width="400" height="200" style="margin-top: 2rem;"></canvas>
 
-  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
-  <script>
-    console.log("Script is running!");
-  </script>  
 </body>
 </html>
