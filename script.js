@@ -132,7 +132,7 @@ const coffeePresets = {
       <p>Assumed final mix temp: ${mixedTemp.toFixed(1)}°C</p>
     `;
   
-    fetch('http://127.0.0.1:5000/calculate', {
+    fetch('https://coffee-walk-model.onrender.com/calculate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -462,7 +462,7 @@ const coffeePresets = {
       <p>Assumed final mix temp: ${mixedTemp.toFixed(1)}°C</p>
     `;
   
-    fetch('http://127.0.0.1:5000/calculate', {
+    fetch('https://coffee-walk-model.onrender.com/calculate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
