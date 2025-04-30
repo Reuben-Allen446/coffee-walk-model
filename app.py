@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app, origins=["https://adorable-meerkat-2c71f7.netlify.app"])
+
 import numpy as np
 import math
 
-app = Flask(__name__)
-CORS(app)
 
 # --- Utility functions --- #
 
