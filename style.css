@@ -1,3 +1,4 @@
+
 body {
   font-family: sans-serif;
   max-width: 600px;
@@ -125,3 +126,132 @@ button:hover {
 #sloshStatus p {
   margin: 0.5rem 0;
 }
+
+body {
+  font-family: sans-serif;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #fafafa;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+input, select, button {
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #463f3a;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background-color: #6a5d58;
+}
+
+#result, #presetInfo {
+  margin-top: 2rem;
+  background-color: #eee;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.hidden {
+  display: none;
+}
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-pop {
+  opacity: 0;
+  transform: scale(0.95);
+  animation: fadePop 0.6s ease forwards;
+}
+
+@keyframes fadePop {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+#sloshMeterContainer {
+  width: 100%;
+  height: 20px;
+  background: #eee;
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#sloshMeter {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, red, orange, yellow, limegreen);
+  transition: width 0.2s ease;
+}
+
+#startTracking {
+  margin-top: 15px;
+}
+
+#sloshMeterContainer {
+  width: 100%;
+  height: 20px;
+  background: #eee;
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#sloshMeter {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, red, orange, yellow, limegreen);
+  transition: width 0.2s ease;
+}
+
+#startTracking {
+  margin-top: 1rem;
+}
+
+#sloshStatus p {
+  margin: 0.5rem 0;
+}
+
